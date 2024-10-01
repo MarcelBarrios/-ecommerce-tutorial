@@ -57,7 +57,28 @@ const addItemToCart = (id, price) => {
 document.body.addEventListener('click', (e) => {
     if (e.target.matches('.add-to-cart')) {
       console.log(e.target)
-      addItemToCart(e.target.id, e.target.dataset.price)
+      addItemToCart(e.target.dataset.id, e.target.dataset.price)
       console.log(cart) // Use console.log to test your work
+      displayCart() // Display the cart! 
     }
   })
+
+  const displayCart = () => {
+    let cartStr = ''
+    for (let i = 0; i < cart.length; i += 1) {
+      const item = cart[i]
+      cartStr += `<li>
+        <span>${item.id}</span>
+        <input type="number" value="${item.qty}" class="input-qty" data-id="${item.id}">
+        <span>${item.price}</span>
+        <span>${(item.price * item.qty).toFixed(2)}</span>
+        <button class="button-add" data-id="${item.id}">+</button>
+        <button class="button-sub" data-id="${item.id}">-</button>
+      </li>`
+    }
+    // Get the cart 
+    const cartItems = document.querySelector('#cart-items')
+    // Set the inner html of the cart
+    cartItems.innerHTML = cartStr
+  }
+
