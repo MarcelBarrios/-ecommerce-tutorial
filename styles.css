@@ -1,5 +1,5 @@
 body {
-    font-family: Helvetica;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
     line-height: 1.5;
     margin: 0;
@@ -9,7 +9,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-  background-color: bisque;
+  background-color: rgb(144, 214, 139);
 }
 
 .page-header ul {
