@@ -60,8 +60,49 @@ document.body.addEventListener('click', (e) => {
       addItemToCart(e.target.dataset.id, e.target.dataset.price)
       console.log(cart) // Use console.log to test your work
       displayCart() // Display the cart! 
+    } else if (e.target.matches('.button-add')) {
+        // increase qty by 1
+        const name = e.target.dataset.id
+        addToCart(name)
+        displayCart()
+    } else if (e.target.matches('.button-sub')) {
+        // decrease qty by 1
+        const name = e.target.dataset.id
+        removeFromCart(name)
+        displayCart()
     }
   })
+
+  const addToCart = (id) => {
+    for (let i = 0; i < cart.length; i += 1) {
+      const item = cart[i] // get the item from the cart
+      // Does the name match the name of the id? 
+      if (id === item.id) {
+        // if so...
+        item.qty += 1 // add 1 to qty
+        return // exit this function early
+      }
+    }
+  }
+
+  const removeFromCart = (id) => {
+    // Loop over items in cart
+    for (let i = 0; i < cart.length; i += 1 ) {
+      // get an item 
+      const item = cart[i]
+      // Does id match the item id? 
+      if (id === item.id) {
+        // if so, subtract 1 from item qty
+        item.qty -= 1
+        // Check if the qty is 0
+        if (item.qty === 0) {
+          // If so remove this item from the cart
+          cart.splice(i, 1)
+        }
+        return 
+      }
+    }
+  }
 
   const displayCart = () => {
     let cartStr = ''
