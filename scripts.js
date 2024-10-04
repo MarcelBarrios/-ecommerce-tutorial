@@ -104,6 +104,18 @@ document.body.addEventListener('click', (e) => {
     }
   }
 
+  const getCartTotal = () => {
+    let total = 0
+    for (let i = 0; i < cart.length; i += 1) {
+      // get the cart item
+      const item = cart[i]
+      // calculate the total price for that item 
+      // and add it to the total
+      total += item.qty * item.price
+    }
+    return total.toFixed(2) // return total
+  }
+
   const displayCart = () => {
     let cartStr = ''
     for (let i = 0; i < cart.length; i += 1) {
@@ -117,6 +129,11 @@ document.body.addEventListener('click', (e) => {
         <button class="button-sub" data-id="${item.id}">-</button>
       </li>`
     }
+    // Get the total cost in the cart
+    const cartTotal = getCartTotal()
+    // append a li tag at the end of the cartStr with the total
+    cartStr += `<li>Total: ${cartTotal}</li>`
+
     // Get the cart 
     const cartItems = document.querySelector('#cart-items')
     // Set the inner html of the cart
@@ -158,3 +175,6 @@ document.body.addEventListener('click', (e) => {
       }
     }
   })
+
+  const theTotal = getCartTotal()
+  console.log(theTotal)
